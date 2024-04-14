@@ -1,0 +1,60 @@
+﻿@model Web_App.ViewModels.SupplierViewModel
+
+@{
+    ViewData["Title"] = "New supplier";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>SupplierViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Document" class="control-label"></label>
+                <input asp-for="Document" class="form-control" />
+                <span asp-validation-for="Document" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupplierType" class="control-label"></label>
+                <input type="radio" value="1" asp-for="SupplierType" checked /> Natural people <br/>
+                <input type="radio" value="2" asp-for="SupplierType" /> Legal person
+                
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
+                </label>
+            </div>
+            
+            <h4>Address</h4>
+            <hr/>
+
+            <partial name="_Address"/>
+
+            <div class="form-group">
+                <input type="submit" value="Register" class="btn btn-primary" />
+                <a class="btn btn-info" asp-action="Index">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        BuscaCep();
+    </script>
+}
